@@ -1,6 +1,7 @@
 # etu-csu
 
-A quick and dirty port of NetBSD CSU
+A quick and dirty port of NetBSD CSU crtbegin and crtend.
+Primarily to support using C++ with [musl libc](https://musl-libc.org).
 
 ## Getting Started
 If you have clang installed it should be as simple as running ./build.sh 
@@ -12,3 +13,5 @@ run...
 ```
 ARCH=i386 CPPFLAGS=-m32 ./build.sh
 ```
+
+You will find the resultant files in output/$ARCH
