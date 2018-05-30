@@ -38,9 +38,11 @@ fi
 
 BMAKE_FLAGS="MKPIC=yes MKSTRIPIDENT=no OBJCOPY=$OBJCOPY CC=$CC"
 
-if [[ $CC = *"clang"* ]]; then
+case "$CC" in
+  *clang*)
 	AFLAGS="--target=$ARCH-pc-linux"
-fi
+  ;;
+esac
 
 BMAKE_FLAGS="AFLAGS=$AFLAGS $BMAKE_FLAGS"
 
