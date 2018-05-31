@@ -5,6 +5,7 @@
 #
 # ARCH=i386 ./build.sh
 
+SYSTEM="${ARCH:-`uname -s`}"
 ARCH="${ARCH:-`uname -m`}"
 
 if [ -x "$(command -v bmake)" ]; then
@@ -38,9 +39,13 @@ fi
 
 BMAKE_FLAGS="MKPIC=yes MKSTRIPIDENT=no OBJCOPY=$OBJCOPY CC=$CC"
 
+if [ $SYSTEM = "FreeBSD" ]; then
+	BMAKE_FLAGS="-m /usr/local/share/mk $BMAKE_FLAGS"
+fi
+
 case "$CC" in
   *clang*)
-	AFLAGS="--target=$ARCH-pc-linux"
+	AFLAGS="--target=$ARCH-pc-linux $AFLAGS"
   ;;
 esac
 
